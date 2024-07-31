@@ -216,7 +216,7 @@ function findReactComponent(element) {
 window.vm = findReactComponent(document.getElementsByClassName("stage-header_stage-size-row_14N65")[0]).props.vm;
 
 (function() {
-  var extensionInstance = new ScratchMath(window.vm.extensionManager.runtime)
+  var extensionInstance = new MIDI(window.vm.extensionManager.runtime)
   var serviceName = window.vm.extensionManager._registerInternalExtension(extensionInstance)
   window.vm.extensionManager._loadedExtensions.set(extensionInstance.getInfo().id, serviceName)
 })()
