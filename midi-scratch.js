@@ -34,7 +34,7 @@ if (navigator.requestMIDIAccess) {
         lastNoteReleased = note;
         notesOn.splice(notesOn.indexOf(note), 1);
         noteVelocities.splice(noteVelocities.findIndex(subArray => subArray[0] === note), 1);
-        vm.runtime.startHats('midi_whenNoteReleased');
+        //vm.runtime.startHats('midi_whenNoteReleased');
       } else {
         console.log(`Other MIDI Message: Status=${status}, Note=${note}, Velocity=${velocity}, Timestamp ${event.timeStamp}`);
       }
@@ -55,6 +55,9 @@ if (navigator.requestMIDIAccess) {
   throw new Error("MIDI is not supported on this browser.");
 }
 
+const ArgumentType = require('../../extension-support/argument-type');
+const BlockType = require('../../extension-support/block-type');
+
 class MIDI {
   constructor (runtime) {
     /**
@@ -64,6 +67,7 @@ class MIDI {
      */
     this.runtime = runtime;
   }
+  
   getInfo() {
     return {
       id: 'midi',
