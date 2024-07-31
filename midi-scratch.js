@@ -55,9 +55,6 @@ if (navigator.requestMIDIAccess) {
   throw new Error("MIDI is not supported on this browser.");
 }
 
-const ArgumentType = require('../../extension-support/argument-type');
-const BlockType = require('../../extension-support/block-type');
-
 class MIDI {
   constructor (runtime) {
     /**
@@ -75,22 +72,22 @@ class MIDI {
       blocks: [
         {
           opcode: 'MIDIinputDevices',
-          blockType: BlockType.REPORTER,
+          blockType: 'reporter',
           text: 'connected MIDI input devices',
           disableMonitor: true,
         },
         {
           opcode: 'midiDeviceInfo',
-          blockType: BlockType.REPORTER,
+          blockType: 'reporter',
           text: '[info] of MIDI device [number]',
           arguments: {
             info: {
-              type: ArgumentType.STRING,
+              type: 'string',
               defaultValue: 'name',
               menu: 'infoMenu',
             },
             number: {
-              type: ArgumentType.NUMBER,
+              type: 'number',
               defaultValue: 0,
             }
           }
@@ -98,55 +95,55 @@ class MIDI {
         '---',
         {
           opcode: 'whenNotePressed',
-          blockType: BlockType.EVENT,
+          blockType: 'event',
           text: 'when any note pressed',
           isEdgeActivated: false,
           shouldRestartExistingThreads: true,
         },
         {
           opcode: 'whenNoteReleased',
-          blockType: BlockType.EVENT,
+          blockType: 'event',
           text: 'when any note released',
           isEdgeActivated: false,
           shouldRestartExistingThreads: true,
         },
         {
           opcode: 'noteOn',
-          blockType: BlockType.BOOLEAN,
+          blockType: 'boolean',
           text: 'is note [note] on?',
           arguments: {
             note: {
-              type: ArgumentType.NOTE,
+              type: 'note',
               defaultValue: 60,
             }
           }
         },
         {
           opcode: 'noteVelocity',
-          blockType: BlockType.REPORTER,
+          blockType: 'reporter',
           text: 'velocity of note [note]',
           arguments: {
             note: {
-              type: ArgumentType.NOTE,
+              type: 'note',
               defaultValue: 60,
             }
           }
         },
         {
           opcode: 'activeNotes',
-          blockType: BlockType.REPORTER,
+          blockType: 'reporter',
           text: 'all active notes',
           disableMonitor: true,
         },
         {
           opcode: 'lastNotePressed',
-          blockType: BlockType.REPORTER,
+          blockType: 'reporter',
           text: 'last note pressed',
           disableMonitor: true,
         },
         {
           opcode: 'lastNoteReleased',
-          blockType: BlockType.REPORTER,
+          blockType: 'reporter',
           text: 'last note released',
           disableMonitor: true,
         }
