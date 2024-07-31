@@ -109,7 +109,7 @@ class MIDI {
         },
         {
           opcode: 'noteOn',
-          blockType: 'boolean',
+          blockType: 'bool',
           text: 'is note [note] on?',
           arguments: {
             note: {
