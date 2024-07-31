@@ -29,12 +29,12 @@ if (navigator.requestMIDIAccess) {
         notesOn.push(note);
         noteVelocities.push([note, velocity]);
         lastNotePressed = note;
-        Scratch.vm.runtime.startHats('midi_whenNotePressed');
+        vm.runtime.startHats('midi_whenNotePressed');
       } else if (command === 0x80 || (command === 0x90 && velocity === 0)) {
         lastNoteReleased = note;
         notesOn.splice(notesOn.indexOf(note), 1);
         noteVelocities.splice(noteVelocities.findIndex(subArray => subArray[0] === note), 1);
-        Scratch.vm.runtime.startHats('midi_whenNoteReleased');
+        vm.runtime.startHats('midi_whenNoteReleased');
       } else {
         console.log(`Other MIDI Message: Status=${status}, Note=${note}, Velocity=${velocity}, Timestamp ${event.timeStamp}`);
       }
@@ -71,22 +71,22 @@ class MIDI {
       blocks: [
         {
           opcode: 'MIDIinputDevices',
-          blockType: Scratch.BlockType.REPORTER,
+          blockType: BlockType.REPORTER,
           text: 'connected MIDI input devices',
           disableMonitor: true,
         },
         {
           opcode: 'midiDeviceInfo',
-          blockType: Scratch.BlockType.REPORTER,
+          blockType: BlockType.REPORTER,
           text: '[info] of MIDI device [number]',
           arguments: {
             info: {
-              type: Scratch.ArgumentType.STRING,
+              type: ArgumentType.STRING,
               defaultValue: 'name',
               menu: 'infoMenu',
             },
             number: {
-              type: Scratch.ArgumentType.NUMBER,
+              type: ArgumentType.NUMBER,
               defaultValue: 0,
             }
           }
@@ -94,55 +94,55 @@ class MIDI {
         '---',
         {
           opcode: 'whenNotePressed',
-          blockType: Scratch.BlockType.EVENT,
+          blockType: BlockType.EVENT,
           text: 'when any note pressed',
           isEdgeActivated: false,
           shouldRestartExistingThreads: true,
         },
         {
           opcode: 'whenNoteReleased',
-          blockType: Scratch.BlockType.EVENT,
+          blockType: BlockType.EVENT,
           text: 'when any note released',
           isEdgeActivated: false,
           shouldRestartExistingThreads: true,
         },
         {
           opcode: 'noteOn',
-          blockType: Scratch.BlockType.BOOLEAN,
+          blockType: BlockType.BOOLEAN,
           text: 'is note [note] on?',
           arguments: {
             note: {
-              type: Scratch.ArgumentType.NOTE,
+              type: ArgumentType.NOTE,
               defaultValue: 60,
             }
           }
         },
         {
           opcode: 'noteVelocity',
-          blockType: Scratch.BlockType.REPORTER,
+          blockType: BlockType.REPORTER,
           text: 'velocity of note [note]',
           arguments: {
             note: {
-              type: Scratch.ArgumentType.NOTE,
+              type: ArgumentType.NOTE,
               defaultValue: 60,
             }
           }
         },
         {
           opcode: 'activeNotes',
-          blockType: Scratch.BlockType.REPORTER,
+          blockType: BlockType.REPORTER,
           text: 'all active notes',
           disableMonitor: true,
         },
         {
           opcode: 'lastNotePressed',
-          blockType: Scratch.BlockType.REPORTER,
+          blockType: BlockType.REPORTER,
           text: 'last note pressed',
           disableMonitor: true,
         },
         {
           opcode: 'lastNoteReleased',
-          blockType: Scratch.BlockType.REPORTER,
+          blockType: BlockType.REPORTER,
           text: 'last note released',
           disableMonitor: true,
         }
