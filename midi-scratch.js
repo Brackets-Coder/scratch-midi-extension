@@ -34,7 +34,7 @@ if (navigator.requestMIDIAccess) {
         lastNoteReleased = note;
         notesOn.splice(notesOn.indexOf(note), 1);
         noteVelocities.splice(noteVelocities.findIndex(subArray => subArray[0] === note), 1);
-        //vm.runtime.startHats('midi_whenNoteReleased');
+        vm.runtime.startHats('midi_whenNoteReleased');
       } else {
         console.log(`Other MIDI Message: Status=${status}, Note=${note}, Velocity=${velocity}, Timestamp ${event.timeStamp}`);
       }
@@ -170,7 +170,7 @@ class MIDI {
   }
 
   noteOn(args) {
-    return notesOn.includes(args.note);
+    return notesOn.includes(Number(args.note));
   }
 
   noteVelocity(args) {
