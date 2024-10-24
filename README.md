@@ -1,1 +1,1 @@
-This is just here for any Scratch projects to reference that need it. It will not be recieving any more updates in favor of the [Turbwarp Extension counterpart]([url](https://github.com/TurboWarp/extensions/pull/1725))
+This is just here for any Scratch projects to reference that need it. It will not be recieving any more updates in favor of the [Turbwarp extension counterpart](https://github.com/TurboWarp/extensions/pull/1725)
